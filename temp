@@ -1,56 +1,50 @@
-// Handlers can be 
-// 1. lambda expressions 
-// 2. variables storing lambda expressions
-// 3. static methods
-// 4. instance methods
-// 5. local functions
+using System.Collections.Concurrent;
+using System.Net.Mime;
 
-// Create Builder   
+// Create builder
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Register services / configuration
 builder.Services.AddEndpointsApiExplorer();
 
-// Initialize app
+// Build
 WebApplication app = builder.Build();
 
-// Map endpoints (get, get, post, put, delete)
+// Mapping endpoings
+var _project = new ConcurrentDictionary<string, Project>();
 
-app.MapGet("/project", () => Project.All);
+app.MapGet("/project", () => _project);
 
-Delegate getProject =  (string id) => Project.All[id];
-app.MapGet("/project/{id}", getProject);
+app.MapGet("/project/{id}", (string id) => 
+    _project.TryGetValue(id, out var project)
+        ? TypedResults.Ok(project)
+        : Results.NotFound());
 
-app.MapPost("/project/{id}", Handlers.AddProject);
+app.MapPost("/project/{id}", (string id, Project project) => 
+    _project.TryAdd(id, project)
+        ? TypedResults.Created($"/project/{id}", project) // response returns location header and content type
+        : Results.BadRequest(new {id = "Project with id already exists"}) // Returns a json field
+);
 
-Handlers handlers = new();
-app.MapPut("project/{id}", () => handlers.ReplaceProject);
+app.MapPut("/project/{id}", (string id, Project project) =>
+{
+    _project[id] = project;
+    return Results.NoContent();
+});
 
-app.MapDelete("project/{id}", () => DeleteProject);
+app.MapDelete("/project/{id}", (string id) =>
+{
+    _project.TryRemove(id, out _);
+    return Results.NoContent();
+});
+
+
+app.MapGet("/pb", (HttpResponse response) =>
+{
+    response.StatusCode = 418;
+    response.ContentType = MediaTypeNames.Text.Plain;
+    return response.WriteAsync("Im peanut butter!");
+});
 
 app.Run();
 
-
-void DeleteProject(string id)
-{
-    Project.All.Remove(id);
-}
-
-public record Project(string Name, int Difficulty)
-{
-    public static readonly Dictionary<string, Project> All = new();
-}
-
-public class Handlers
-{
-    public void ReplaceProject(string id, Project project)
-    {
-        Project.All[id] = project;
-    }
-
-    public static void AddProject(string id, Project project)
-    {
-        Project.All.Add(id, project);
-    }
-}
-
+record Project(string Name, int Difficulty);

@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-ApiVerbs", "05-chapter\0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-MinAPiStatus", "05-chapter\04-MinAPiStatus\04-MinAPiStatus.csproj", "{B00D7C0B-92E1-4EB0-8298-DB585558D8F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-MinimalApiWithProblemDetails", "05-chapter\05-MinimalApiWithProblemDetails\05-MinimalApiWithProblemDetails.csproj", "{E55E4D32-2389-436C-8222-F5BDB527AE04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-MinimalApiAutoProblemDetails", "05-chapter\06-MinimalApiAutoProblemDetails\06-MinimalApiAutoProblemDetails.csproj", "{32D36B7A-843C-4E4F-9F93-2ECDE7970F49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,14 @@ Global
 		{B00D7C0B-92E1-4EB0-8298-DB585558D8F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B00D7C0B-92E1-4EB0-8298-DB585558D8F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B00D7C0B-92E1-4EB0-8298-DB585558D8F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55E4D32-2389-436C-8222-F5BDB527AE04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55E4D32-2389-436C-8222-F5BDB527AE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55E4D32-2389-436C-8222-F5BDB527AE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55E4D32-2389-436C-8222-F5BDB527AE04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32D36B7A-843C-4E4F-9F93-2ECDE7970F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D36B7A-843C-4E4F-9F93-2ECDE7970F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32D36B7A-843C-4E4F-9F93-2ECDE7970F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D36B7A-843C-4E4F-9F93-2ECDE7970F49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +109,8 @@ Global
 		{D05F0F6A-2372-433D-A669-9A362A77F886} = {E32BCEBD-CA93-496E-B911-DC01F0428445}
 		{3BF6514D-EDB9-488A-9FBA-8E6468C3D93F} = {E32BCEBD-CA93-496E-B911-DC01F0428445}
 		{B00D7C0B-92E1-4EB0-8298-DB585558D8F3} = {E32BCEBD-CA93-496E-B911-DC01F0428445}
+		{E55E4D32-2389-436C-8222-F5BDB527AE04} = {E32BCEBD-CA93-496E-B911-DC01F0428445}
+		{32D36B7A-843C-4E4F-9F93-2ECDE7970F49} = {E32BCEBD-CA93-496E-B911-DC01F0428445}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A62F6697-F7D5-4579-8336-1B57A04103EC}

@@ -30,26 +30,25 @@ app.MapDelete("project/{id}", () => DeleteProject);
 
 app.Run();
 
-void DeleteProject (string id)
+
+void DeleteProject(string id)
 {
     Project.All.Remove(id);
 }
 
-public record Project(string Name, int Difficulty)
+public record Project (string Name, int Difficulty)
 {
     public static readonly Dictionary<string, Project> All = new();
 };
 
-public class Handlers
-{
-    public void ReplaceProject (string id, Project project)
+class Handlers{
+    public void ReplaceProject(string id, Project project)
     {
         Project.All[id] = project;
     }
 
-    public static void AddProject (string id, Project project)
+    public static void AddProject(string id, Project project)
     {
         Project.All.Add(id, project);
     }
 }
-
